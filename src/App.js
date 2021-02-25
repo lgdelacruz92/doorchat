@@ -1,6 +1,7 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { red, blue } from '@material-ui/core/colors';
+import { useState } from 'react'
 
 const customTheme = createMuiTheme({
     palette: {
@@ -10,14 +11,17 @@ const customTheme = createMuiTheme({
 })
 
 function App() {
+    const [login, setLogin] = useState({ isLoggedIn: false })
 
-    
     return (
-        <ThemeProvider theme={customTheme}>
-            <div className="App">
-            </div>
-        </ThemeProvider>
-  );
+        <div className="App">
+            <ThemeProvider theme={customTheme}>
+                {
+                    login.isLoggedIn ? <div>I am logged in</div> : <div>I am out</div>
+                }
+            </ThemeProvider>
+        </div >
+    );
 }
 
 export default App;
