@@ -19,6 +19,7 @@ export const LoginPage = (args) => {
     );
 };
 LoginPage.args = {
+    setLogin: (username) => {console.log('username added')}
 }
 
 const LoginExport = {
