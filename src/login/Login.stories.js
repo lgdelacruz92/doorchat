@@ -21,8 +21,9 @@ export const LoginPage = (args) => {
 LoginPage.args = {
 }
 
-
-export default {
+const LoginExport = {
     title: 'Example/Login',
     component: LoginPage
 }
+
+export default LoginExport;
