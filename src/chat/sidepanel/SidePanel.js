@@ -1,22 +1,23 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { Drawer } from '@material-ui/core';
 import Rooms from './rooms/Rooms';
 import UserInfo from './userinfo/UserInfo';
 
 const useStyles = makeStyles(theme => ({
-    drawer: {
+    root: {
         backgroundColor: theme.palette.primary.main,
-        color: 'white'
+        color: 'white',
+        float: 'left',
+        height: '100%'
     }
 }));
 
 function SidePanel(args) {
-    const classes = useStyles()
+    const classes = useStyles();
     return (
-        <Drawer open={true} PaperProps={{ className: classes.drawer }}>
+        <div className={classes.root}>
             <UserInfo />
             <Rooms {...args} />
-        </Drawer>
+        </div>
     );
 }
 
