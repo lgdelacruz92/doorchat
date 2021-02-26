@@ -3,6 +3,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import { red, blue } from '@material-ui/core/colors';
 import { useState } from 'react';
 import Login from './login/Login';
+import Chat from './chat/Chat';
 
 const customTheme = createMuiTheme({
     palette: {
@@ -18,7 +19,7 @@ function App() {
         <div className="App" style={{height: '100%', width: '100%'}}>
             <ThemeProvider theme={customTheme}>
                 {
-                    login.length > 0 ? <div>I am logged in</div> : <Login setLogin={setLogin}/> 
+                    login.length > 0 ? <Chat></Chat>: <Login setLogin={setLogin}/> 
                 }
             </ThemeProvider>
         </div >
