@@ -32,7 +32,7 @@ const useStyles = makeStyles({
 const TextInput = (args) => {
     const classes = useStyles();
     const inputRef = useRef();
-    const { currentRoom, setCurrentRoom, user } = args;
+    const { currentRoom, user } = args;
 
     const onSend = () => {
         const message = inputRef.current.innerText;

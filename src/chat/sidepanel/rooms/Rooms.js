@@ -17,17 +17,6 @@ function ListItemLink(props) {
     return <ListItem button {...props} />;
 }
 
-const dummyRooms = [
-    'Analytics',
-    'Business',
-    'Design',
-    'Engineering',
-    'HR',
-    'Operations',
-    'Special Ops'
-]
-
-
 const Rooms = (args) => {
     const classes = useStyles();
     const { onRoomClick, rooms } = args;

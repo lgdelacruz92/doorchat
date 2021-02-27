@@ -1,7 +1,7 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { red, blue } from '@material-ui/core/colors';
-import { useState, createContext } from 'react';
+import { useState } from 'react';
 import Login from './login/Login';
 import Chat from './chat/Chat';
 

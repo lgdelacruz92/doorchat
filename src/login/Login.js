@@ -1,7 +1,6 @@
 import { Button, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useState } from 'react';
-import { SERVER_URL } from 'App';
 
 const useStyles = makeStyles({
     root: {
