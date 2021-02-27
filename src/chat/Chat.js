@@ -30,10 +30,11 @@ function Chat(args) {
                 console.log(err)
             })
     }, []);
+
     return (
         <div className={classes.root}>
             <SidePanel login={login} rooms={rooms} onRoomClick={(room) => { setCurrentRoom(room) }}></SidePanel>
-            <MainPanel currentRoom={currentRoom} login={login}/>
+            <MainPanel currentRoom={currentRoom} setCurrentRoom={setCurrentRoom} login={login}/>
         </div>
     );
 }

@@ -1,5 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { TextField, Button } from '@material-ui/core';
+import { Button } from '@material-ui/core';
+import { useRef } from 'react';
+import { SERVER_URL } from 'App';
 
 const useStyles = makeStyles({
     root: {
@@ -27,15 +29,45 @@ const useStyles = makeStyles({
     }
 })
 
-const TextInput = () => {
+const TextInput = (args) => {
     const classes = useStyles();
+    const inputRef = useRef();
+    const { currentRoom, setCurrentRoom, user } = args;
+
+    const onSend = () => {
+        const message = inputRef.current.innerText;
+        inputRef.current.innerText = '';
+        fetch(`${SERVER_URL}rooms/${currentRoom.id}/messages`, {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ roomId: currentRoom.id, name: user.name, message})
+        })
+        .then(resp => {
+            return resp.json();
+        })
+        .then(json => {
+            if (currentRoom.id !== undefined) {
+                setCurrentRoom(JSON.parse(JSON.stringify(currentRoom)));
+            }
+        })
+        .catch(err => {
+            console.log(err, 'TextInput')
+        });
+    }
+
     return <div className={classes.root}>
         <span
+            ref={inputRef}
             className={classes.textField}
             role="textbox"
             contentEditable={true}>
         </span>
-        <Button className={classes.send}>Send</Button>
+        <Button onClick={onSend} className={classes.send}>Send</Button>
     </div>;
 }
 

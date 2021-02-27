@@ -1,6 +1,7 @@
 import UserMessage from './usermessage/UserMessage';
 import UserSent from './usersent/UserSent';
 import { makeStyles } from '@material-ui/core/styles';
+import { useEffect,useRef } from 'react';
 
 const useStyles = makeStyles({
     root: {
@@ -13,12 +14,18 @@ const useStyles = makeStyles({
 })
 
 const ChatWindow = (args) => {
-    const { messages, userId } = args
+    const { messages, user } = args
     const classes = useStyles();
+    const chatWindowRef = useRef();
+
+    useEffect(() => {
+        chatWindowRef.current.scrollTo(0, chatWindowRef.current.scrollHeight);
+    });
+
     return (
-        <div className={classes.root}>
+        <div className={classes.root} ref={chatWindowRef}>
             { messages.map((m,i) => {
-                if (userId === m.id) {
+                if (user === m.name) {
                     return <UserSent key={i} message={m}></UserSent>
                 }
                 return <UserMessage key={i} message={m} />

@@ -37,30 +37,28 @@ const useStyles = makeStyles({
 })
 
 const MainPanel = (args) => {
-    const { currentRoom, login } = args;
+    const { currentRoom, setCurrentRoom, login } = args;
     const classes = useStyles();
     const [messages, setMessages] = useState([]);
 
     useEffect(() => {
-        console.log('current room', currentRoom);
         if (currentRoom.id !== undefined) {
             fetch(`${SERVER_URL}rooms/${currentRoom.id}/messages`)
                 .then(resp => {
                     return resp.json();
                 })
                 .then(json => {
-                    console.log(json);
                     setMessages(json);
                 })
                 .catch(err => {
                     console.error('Error fetching messages');
-                })
+                });
         }
     }, [currentRoom]);
     return <div id="main-panel" className={classes.root}>
-        <RoomInfo currentRoom={currentRoom}></RoomInfo>
-        <ChatWindow messages={messages} userId={login.id}></ChatWindow>
-        <TextInput></TextInput>
+        <RoomInfo currentRoom={currentRoom} user={login.name}></RoomInfo>
+        <ChatWindow messages={messages} user={login.name}></ChatWindow>
+        <TextInput currentRoom={currentRoom} setCurrentRoom={setCurrentRoom} user={login}></TextInput>
     </div>
 }
 

@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 });
 
 const RoomInfo = (args) => {
-    const { currentRoom } = args;
+    const { currentRoom, user } = args;
     const classes = useStyles();
     const [people, setPeople] = useState([]);
 
@@ -41,12 +41,10 @@ const RoomInfo = (args) => {
     return <div className={classes.root}>
         <div className={classes.title}>{currentRoom.name}</div>
         <div className={classes.users}>
+            <span style={{color: 'red'}}>{user}</span>
             { 
-                people.map((p,i) => {
-                    if (i === people.length-1) {
-                        return `${p}`;
-                    }
-                    return `${p}, `;
+                people.map(p => {
+                    return `, ${p}`;
                 })
             }
         </div>
