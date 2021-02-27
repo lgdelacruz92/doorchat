@@ -1,8 +1,7 @@
 FROM node:12
 
 COPY . /doorchat
-COPY ./.env.development.local /doorchat
-COPY ./.env.production.local /doorchat
+COPY ./.env /doorchat/.env
 RUN cd doorchat
 RUN yarn install
 

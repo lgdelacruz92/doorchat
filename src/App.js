@@ -12,16 +12,15 @@ const customTheme = createMuiTheme({
     },
 })
 
-console.log(process.env.SERVER, 'server host');
+export const SERVER_URL = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVELOPMENT_SERVER : process.env.REACT_APP_PRODUCTION_SERVER;
 
 function App() {
-    const [login, setLogin] = useState({});
-    console.log(login, 'login name')
+    const [login, setLogin] = useState(null);
     return (
         <div className="App" style={{height: '100%', width: '100%'}}>
             <ThemeProvider theme={customTheme}>
                 {
-                    login.length > 0 ? <Chat login={login}></Chat>: <Login setLogin={setLogin}/> 
+                    login !== null ? <Chat login={login}></Chat>: <Login setLogin={setLogin}/> 
                 }
             </ThemeProvider>
         </div >

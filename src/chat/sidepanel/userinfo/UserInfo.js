@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { getDefaultNormalizer } from '@testing-library/react';
 import { useState, useEffect } from 'react';
 
 const useStyles = makeStyles(theme => {
@@ -52,7 +51,7 @@ const UserInfo = (args) => {
 
     
     return <div className={classes.root}>
-        <h2 className={classes.name}>{login}</h2>
+        <h2 className={classes.name}>{login.name}</h2>
         <span className={classes.online}>{getTime()}</span>
     </div>
 }

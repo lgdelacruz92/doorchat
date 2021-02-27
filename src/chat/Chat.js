@@ -2,6 +2,7 @@ import SidePanel from './sidepanel/SidePanel';
 import { makeStyles } from '@material-ui/core/styles';
 import MainPanel from './mainpanel/MainPanel';
 import { useState, useEffect } from 'react';
+import { SERVER_URL } from 'App';
 
 const useStyles = makeStyles({
     root: {
@@ -17,7 +18,7 @@ function Chat(args) {
     const [rooms, setRooms] = useState([]);
     const [currentRoom, setCurrentRoom] = useState({});
     useEffect(() => {
-        fetch('http://localhost:8080/api/rooms')
+        fetch(`${SERVER_URL}rooms`)
             .then(resp => {
                 return resp.json();
             })
@@ -31,8 +32,8 @@ function Chat(args) {
     }, []);
     return (
         <div className={classes.root}>
-            <SidePanel login={login} rooms={rooms} onRoomClick={(room) => { console.log(room) }}></SidePanel>
-            <MainPanel currentRoom={currentRoom}/>
+            <SidePanel login={login} rooms={rooms} onRoomClick={(room) => { setCurrentRoom(room) }}></SidePanel>
+            <MainPanel currentRoom={currentRoom} login={login}/>
         </div>
     );
 }

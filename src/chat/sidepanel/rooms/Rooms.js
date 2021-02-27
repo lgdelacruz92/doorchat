@@ -31,7 +31,6 @@ const dummyRooms = [
 const Rooms = (args) => {
     const classes = useStyles();
     const { onRoomClick, rooms } = args;
-
     return (
         <List component="nav" aria-label="secondary mailbox folders">
             { rooms.map(room => (

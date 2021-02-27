@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { useEffect, useState } from 'react';
-
+import { SERVER_URL } from 'App';
 
 const useStyles = makeStyles({
     root: {
@@ -20,21 +20,35 @@ const useStyles = makeStyles({
 });
 
 const RoomInfo = (args) => {
-    const { name, people, currentRoom } = args;
+    const { currentRoom } = args;
     const classes = useStyles();
+    const [people, setPeople] = useState([]);
 
     useEffect(() => {
-        fetch('http://')
-    }, []);
+        if (currentRoom.id !== undefined) {
+            fetch(`${SERVER_URL}rooms/${currentRoom.id}`)
+            .then(resp => {
+                return resp.json();
+            })
+            .then(json => {
+                setPeople(json.users);
+            })
+            .catch(err => {
+                console.log(err)
+            });
+        }
+    }, [currentRoom]);
     return <div className={classes.root}>
-        <div className={classes.title}>{name}</div>
+        <div className={classes.title}>{currentRoom.name}</div>
         <div className={classes.users}>
-            {people.map((p, i) => {
-                if (i !== people.length - 1) {
-                    return `${p}, `
-                }
-                return `${p}`
-            })}
+            { 
+                people.map((p,i) => {
+                    if (i === people.length-1) {
+                        return `${p}`;
+                    }
+                    return `${p}, `;
+                })
+            }
         </div>
 
     </div>

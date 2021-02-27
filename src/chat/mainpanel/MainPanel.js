@@ -36,7 +36,7 @@ const useStyles = makeStyles({
 })
 
 const MainPanel = (args) => {
-    const { currentRoom } = args;
+    const { currentRoom, login } = args;
     const classes = useStyles();
     const [messages, setMessages] = useState(dummyMessages);
 
@@ -45,7 +45,7 @@ const MainPanel = (args) => {
     }, []);
     return <div id="main-panel" className={classes.root}>
         <RoomInfo currentRoom={currentRoom}></RoomInfo>
-        <ChatWindow messages={messages} userId={3}></ChatWindow>
+        <ChatWindow messages={messages} userId={login.id}></ChatWindow>
         <TextInput></TextInput>
     </div>
 }

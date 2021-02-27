@@ -1,6 +1,7 @@
 import { Button, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useState } from 'react';
+import { SERVER_URL } from 'App';
 
 const useStyles = makeStyles({
     root: {
@@ -39,7 +40,8 @@ function Login({ setLogin }) {
         if (username === '') {
             setError(true);
         } else {
-            setLogin(username);
+            const id = Math.floor(Math.random() * 1000) + 10;
+            setLogin({ id, name: username });
         }
     }
 
