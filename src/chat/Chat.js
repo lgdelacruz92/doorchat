@@ -21,7 +21,6 @@ function Chat(args) {
     useEffect(() => {
         const socket = socketIOClient(SERVER_URL.replace('api/', ''));
         socket.on('update', room => {
-            console.log('need to update here', currentRoom);
             setCurrentRoom(room);
         });
         fetch(`${SERVER_URL}rooms`)

@@ -26,6 +26,7 @@ const RoomInfo = (args) => {
 
     useEffect(() => {
         if (currentRoom.id !== undefined) {
+            console.log('update current room');
             fetch(`${SERVER_URL}rooms/${currentRoom.id}`)
             .then(resp => {
                 return resp.json();
