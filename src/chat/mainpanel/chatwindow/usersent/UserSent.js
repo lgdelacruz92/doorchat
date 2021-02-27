@@ -25,14 +25,14 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 const UserSent = (args) => {
-    const { user, message } = args.message;
+    const { name, message } = args.message;
     const classes = useStyles();
     return <div className={classes.root}>
         <div className={classes.message}>
             <Paper classes={{ rounded: classes.textContainer }}>
                 <Typography className={classes.innerText}>{message}</Typography>
             </Paper>
-            <Typography className={classes.username}>{user}</Typography>
+            <Typography className={classes.username}>{name}</Typography>
         </div>
     </div>
 }

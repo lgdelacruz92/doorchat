@@ -20,14 +20,14 @@ const useStyles = makeStyles({
 });
 
 const UserMessage = (args) => {
-    const { user, message } = args.message;
+    const { name, message } = args.message;
     const classes = useStyles();
     return <div>
         <div className={classes.message}>
             <Paper classes={{rounded: classes.textContainer}}>
                 <Typography className={classes.innerText}>{message}</Typography>
             </Paper>
-            <Typography className={classes.username}>{user}</Typography>
+            <Typography className={classes.username}>{name}</Typography>
         </div>
     </div>
 }

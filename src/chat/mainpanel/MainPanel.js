@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import ChatWindow from './chatwindow/ChatWindow';
 import TextInput from './textinput/TextInput';
 import { useState,useEffect } from 'react';
+import { SERVER_URL } from 'App';
 
 const dummyMessages = [
     { 
@@ -38,11 +39,24 @@ const useStyles = makeStyles({
 const MainPanel = (args) => {
     const { currentRoom, login } = args;
     const classes = useStyles();
-    const [messages, setMessages] = useState(dummyMessages);
+    const [messages, setMessages] = useState([]);
 
     useEffect(() => {
-        // fetch conversations in room
-    }, []);
+        console.log('current room', currentRoom);
+        if (currentRoom.id !== undefined) {
+            fetch(`${SERVER_URL}rooms/${currentRoom.id}/messages`)
+                .then(resp => {
+                    return resp.json();
+                })
+                .then(json => {
+                    console.log(json);
+                    setMessages(json);
+                })
+                .catch(err => {
+                    console.error('Error fetching messages');
+                })
+        }
+    }, [currentRoom]);
     return <div id="main-panel" className={classes.root}>
         <RoomInfo currentRoom={currentRoom}></RoomInfo>
         <ChatWindow messages={messages} userId={login.id}></ChatWindow>

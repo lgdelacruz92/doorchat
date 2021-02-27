@@ -15,7 +15,8 @@ const useStyles = makeStyles({
         overflow: 'hidden',
         minHeight: '40px',
         lineHeight: '20px',
-        padding: '10px'
+        padding: '10px',
+        border: '1px solid lightgrey'
     },
     send: {
         width: '100px',
@@ -33,7 +34,6 @@ const TextInput = () => {
             className={classes.textField}
             role="textbox"
             contentEditable={true}>
-            Hello world
         </span>
         <Button className={classes.send}>Send</Button>
     </div>;
