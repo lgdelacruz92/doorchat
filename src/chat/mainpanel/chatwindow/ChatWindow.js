@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
     root: {
-        height: '80%',
+        maxHeight: '80%',
         backgroundColor: '#ECEFF0',
         borderTop: '1px solid #ccc',
         overflowY: 'scroll'

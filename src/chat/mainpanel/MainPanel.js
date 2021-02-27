@@ -1,6 +1,7 @@
 import RoomInfo from './roominfo/RoomInfo';
 import { makeStyles } from '@material-ui/core/styles';
 import ChatWindow from './chatwindow/ChatWindow';
+import TextInput from './textinput/TextInput';
 import { useState } from 'react';
 
 const dummyMessages = [
@@ -30,6 +31,7 @@ const useStyles = makeStyles({
     root: {
         width: '100%',
         height: '100%',
+        overflowY: 'auto'
     }
 })
 
@@ -40,6 +42,7 @@ const MainPanel = (args) => {
     return <div id="main-panel" className={classes.root}>
         <RoomInfo name={currentRoom} people={['Ryan Gonzalez', 'Cathleen', 'Grover', 'Abdul', 'Dude']}></RoomInfo>
         <ChatWindow messages={messages} userId={3}></ChatWindow>
+        <TextInput></TextInput>
     </div>
 }
 

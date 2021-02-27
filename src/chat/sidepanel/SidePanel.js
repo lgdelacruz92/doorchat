@@ -6,7 +6,7 @@ const useStyles = makeStyles(theme => ({
     root: {
         backgroundColor: theme.palette.primary.main,
         color: 'white',
-        height: '100%'
+        height: '100%',
     }
 }));
 
