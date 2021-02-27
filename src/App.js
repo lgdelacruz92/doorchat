@@ -13,12 +13,13 @@ const customTheme = createMuiTheme({
 })
 
 function App() {
-    const [login, setLogin] = useState('');
+    const [login, setLogin] = useState({});
+    console.log(login, 'login name')
     return (
         <div className="App" style={{height: '100%', width: '100%'}}>
             <ThemeProvider theme={customTheme}>
                 {
-                    login.length > 0 ? <Chat></Chat>: <Login setLogin={setLogin}/> 
+                    login.length > 0 ? <Chat login={login}></Chat>: <Login setLogin={setLogin}/> 
                 }
             </ThemeProvider>
         </div >

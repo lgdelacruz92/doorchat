@@ -51,8 +51,8 @@ function Login({ setLogin }) {
                     error={error}
                     helperText={error ? "Name cannot be empty" : ""}
                     id="outlined-textarea"
+                    inputProps={{ maxLength: 20 }}
                     label="Type your username..."
-                    multiline
                     onChange={onUsernameChange}
                     placeholder="Placeholder"
                     variant="outlined"

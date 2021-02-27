@@ -12,9 +12,11 @@ const useStyles = makeStyles({
 
 function Chat(args) {
     const classes = useStyles();
+    const { login } = args;
+
     return (
         <div className={classes.root}>
-            <SidePanel {...args}></SidePanel>
+            <SidePanel login={login}></SidePanel>
             <MainPanel currentRoom="Business"/>
         </div>
     );
