@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -31,13 +31,26 @@ const dummyRooms = [
 
 const Rooms = () => {
     const classes = useStyles();
-    const [rooms, setRooms] = useState(dummyRooms);
+    const [rooms, setRooms] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:8080/api/rooms')
+            .then(resp => {
+                return resp.json();
+            })
+            .then(json => {
+                setRooms(json);
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [])
 
     return (
         <List component="nav" aria-label="secondary mailbox folders">
             { rooms.map(room => (
-                <ListItemLink key={room} className={classes.listItem} href="#simple-list">
-                    <ListItemText primary={room} />
+                <ListItemLink key={room.id} className={classes.listItem} href="#simple-list">
+                    <ListItemText primary={room.name} />
                 </ListItemLink>
             ))}
         </List>
