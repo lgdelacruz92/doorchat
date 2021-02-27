@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { useEffect, useState } from 'react';
 
 
 const useStyles = makeStyles({
@@ -19,8 +20,12 @@ const useStyles = makeStyles({
 });
 
 const RoomInfo = (args) => {
-    const { name, people } = args;
+    const { name, people, currentRoom } = args;
     const classes = useStyles();
+
+    useEffect(() => {
+        fetch('http://')
+    }, []);
     return <div className={classes.root}>
         <div className={classes.title}>{name}</div>
         <div className={classes.users}>

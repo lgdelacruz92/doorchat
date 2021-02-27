@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -15,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function ListItemLink(props) {
-    return <ListItem button component="a" {...props} />;
+    return <ListItem button {...props} />;
 }
 
 const dummyRooms = [
@@ -29,27 +28,15 @@ const dummyRooms = [
 ]
 
 
-const Rooms = () => {
+const Rooms = (args) => {
     const classes = useStyles();
-    const [rooms, setRooms] = useState([]);
-
-    useEffect(() => {
-        fetch('http://localhost:8080/api/rooms')
-            .then(resp => {
-                return resp.json();
-            })
-            .then(json => {
-                setRooms(json);
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }, [])
+    const { onRoomClick, rooms } = args;
 
     return (
         <List component="nav" aria-label="secondary mailbox folders">
             { rooms.map(room => (
-                <ListItemLink key={room.id} className={classes.listItem} href="#simple-list">
+                <ListItemLink key={room.id} className={classes.listItem} onClick={() => {
+                    onRoomClick(room)}}>
                     <ListItemText primary={room.name} />
                 </ListItemLink>
             ))}

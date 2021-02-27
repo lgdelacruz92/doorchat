@@ -2,7 +2,7 @@ import RoomInfo from './roominfo/RoomInfo';
 import { makeStyles } from '@material-ui/core/styles';
 import ChatWindow from './chatwindow/ChatWindow';
 import TextInput from './textinput/TextInput';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 const dummyMessages = [
     { 
@@ -39,8 +39,12 @@ const MainPanel = (args) => {
     const { currentRoom } = args;
     const classes = useStyles();
     const [messages, setMessages] = useState(dummyMessages);
+
+    useEffect(() => {
+        // fetch conversations in room
+    }, []);
     return <div id="main-panel" className={classes.root}>
-        <RoomInfo name={currentRoom} people={['Ryan Gonzalez', 'Cathleen', 'Grover', 'Abdul', 'Dude']}></RoomInfo>
+        <RoomInfo currentRoom={currentRoom}></RoomInfo>
         <ChatWindow messages={messages} userId={3}></ChatWindow>
         <TextInput></TextInput>
     </div>

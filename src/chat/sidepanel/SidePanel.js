@@ -12,10 +12,10 @@ const useStyles = makeStyles(theme => ({
 
 function SidePanel(args) {
     const classes = useStyles();
-    const { login } = args;
+    const { login, rooms } = args;
     return (
         <div className={classes.root}>
-            <UserInfo login={login}/>
+            <UserInfo login={login} rooms={rooms}/>
             <Rooms {...args} />
         </div>
     );
