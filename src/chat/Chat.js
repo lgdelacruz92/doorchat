@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import MainPanel from './mainpanel/MainPanel';
 import { useState, useEffect } from 'react';
 import { SERVER_URL } from 'App';
+import socketIOClient from 'socket.io-client';
 
 const useStyles = makeStyles({
     root: {
@@ -18,6 +19,11 @@ function Chat(args) {
     const [rooms, setRooms] = useState([]);
     const [currentRoom, setCurrentRoom] = useState({});
     useEffect(() => {
+        const socket = socketIOClient(SERVER_URL.replace('api/', ''));
+        socket.on('update', room => {
+            console.log('need to update here', currentRoom);
+            setCurrentRoom(room);
+        });
         fetch(`${SERVER_URL}rooms`)
             .then(resp => {
                 return resp.json();

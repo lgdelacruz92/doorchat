@@ -48,13 +48,9 @@ const TextInput = (args) => {
             body: JSON.stringify({ roomId: currentRoom.id, name: user.name, message})
         })
         .then(resp => {
-            return resp.json();
+            console.log('success')
         })
-        .then(json => {
-            if (currentRoom.id !== undefined) {
-                setCurrentRoom(JSON.parse(JSON.stringify(currentRoom)));
-            }
-        })
+
         .catch(err => {
             console.log(err, 'TextInput')
         });

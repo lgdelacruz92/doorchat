@@ -44,6 +44,9 @@ const RoomInfo = (args) => {
             <span style={{color: 'red'}}>{user}</span>
             { 
                 people.map(p => {
+                    if (p === user) {
+                        return '';
+                    }
                     return `, ${p}`;
                 })
             }

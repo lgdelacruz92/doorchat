@@ -54,6 +54,7 @@ const MainPanel = (args) => {
                     console.error('Error fetching messages');
                 });
         }
+
     }, [currentRoom]);
     return <div id="main-panel" className={classes.root}>
         <RoomInfo currentRoom={currentRoom} user={login.name}></RoomInfo>
